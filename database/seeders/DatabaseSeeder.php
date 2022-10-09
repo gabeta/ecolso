@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Multitenancy\Models\Tenant;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +15,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Tenant::checkCurrent()
+           ? $this->runTenantSpecificSeeders()
+           : $this->runLandlordSpecificSeeders();
+    }
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+    public function runTenantSpecificSeeders()
+    {
+
+    }
+
+    public function runLandlordSpecificSeeders()
+    {
+        $this->call(WeekDayTableSeeder::class);
     }
 }

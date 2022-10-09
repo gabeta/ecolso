@@ -15,13 +15,6 @@ use Inertia\Inertia;
 |
 */
 
-Route::domain(config('app.domain'))
-    ->group(function() {
-        Route::get('/', function () {
-            dd('Redirection vers la page officiel');
-        });
-    });
-
 Route::middleware('tenant')
     ->group(function () {
         Route::get('/', function () {
@@ -41,5 +34,13 @@ Route::middleware('tenant')
             Route::get('/dashboard', function () {
                 return Inertia::render('Dashboard');
             })->name('dashboard');
+        });
+    });
+
+
+Route::domain(config('app.domain'))
+    ->group(function() {
+        Route::get('/', function () {
+            dd('Redirection vers la page officiel');
         });
     });
