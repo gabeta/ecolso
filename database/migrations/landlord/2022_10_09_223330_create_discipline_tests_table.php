@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('discipline_tests', function (Blueprint $table) {
             $table->id();
+            $table->string('code');
             $table->string('name');
+            $table->foreignId('discipline_id');
             $table->timestamps();
         });
     }

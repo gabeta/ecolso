@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('school_class_types', function (Blueprint $table) {
+        Schema::create('class_disciplines', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
-            $table->string('name');
-            $table->string('description');
+            $table->foreignId('school_class_type_id');
+            $table->foreignId('discipline_id');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('school_class_types');
+        Schema::dropIfExists('class_disciplines');
     }
 };

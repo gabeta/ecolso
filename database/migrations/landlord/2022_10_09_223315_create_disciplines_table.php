@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('disciplines', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
+            $table->string('code')->unique();
             $table->string('name');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
