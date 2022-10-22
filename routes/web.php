@@ -15,8 +15,12 @@ use Inertia\Inertia;
 |
 */
 
-Route::middleware('tenant')
-    ->group(function () {
+
+// dd('*.'.config('app.domain'));
+
+Route::domain('{tenant}.'.config('app.domain'))
+    ->middleware('tenant')
+    ->group(function() {
         Route::get('/', function () {
             return Inertia::render('Welcome', [
                 'canLogin' => Route::has('login'),
@@ -36,7 +40,6 @@ Route::middleware('tenant')
             })->name('dashboard');
         });
     });
-
 
 Route::domain(config('app.domain'))
     ->group(function() {
