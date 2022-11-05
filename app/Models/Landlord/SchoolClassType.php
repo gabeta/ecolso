@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Landlord;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\Multitenancy\Models\Concerns\UsesLandlordConnection;
 
 class SchoolClassType extends Model
 {
+    use UsesLandlordConnection;
     use HasFactory;
 
     protected $guarded = [];

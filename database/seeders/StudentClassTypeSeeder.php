@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Discipline;
-use App\Models\DisciplineTest;
-use App\Models\SchoolClassType;
+use App\Models\Landlord\Discipline;
+use App\Models\Landlord\DisciplineTest;
+use App\Models\Landlord\SchoolClassType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;

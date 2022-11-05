@@ -7,9 +7,11 @@ use Laravel\Jetstream\Events\TeamCreated;
 use Laravel\Jetstream\Events\TeamDeleted;
 use Laravel\Jetstream\Events\TeamUpdated;
 use Laravel\Jetstream\Team as JetstreamTeam;
+use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class Team extends JetstreamTeam
 {
+    use UsesTenantConnection;
     use HasFactory;
 
     /**

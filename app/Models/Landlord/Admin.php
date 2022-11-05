@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Landlord;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,17 +10,19 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use Spatie\Multitenancy\Models\Concerns\UsesLandlordConnection;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
-    use UsesTenantConnection;
+    use UsesLandlordConnection;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use HasTeams;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
+    protected $table = "users";
 
     /**
      * The attributes that are mass assignable.

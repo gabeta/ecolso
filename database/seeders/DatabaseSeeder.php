@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
 
     public function runLandlordSpecificSeeders()
     {
+        $this->call(AdminSeeder::class);
         $this->call(WeekDayTableSeeder::class);
         $this->call(StudentClassTypeSeeder::class);
     }
