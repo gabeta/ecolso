@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\TenantResource\Pages;
 
+use App\Actions\Landlord\CreateTenant as LandlordCreateTenant;
 use App\Data\TenantFormData;
 use App\Data\UserFormData;
 use App\Filament\Resources\TenantResource;
@@ -13,6 +14,7 @@ use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord\Concerns\HasWizard;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class CreateTenant extends CreateRecord
 {
@@ -59,7 +61,7 @@ class CreateTenant extends CreateRecord
 
     protected function handleRecordCreation(array $data): Model
     {
-        $tenantData = new TenantFormData([
+        $tenantFormData = new TenantFormData([
             'name' => $data['name'],
             'database' => 'ecolso_'.$data['database'],
             'domain' => $data['domain'].'.'.config('app.domain'),
@@ -67,12 +69,11 @@ class CreateTenant extends CreateRecord
             'user' => new UserFormData([
                 'name' => $data['user_name'],
                 'email' => $data['email'],
+                'password' => Str::random(8)
             ]),
         ]);
 
-        dd($tenantData);
-
-        return $this->getModel()::create($data);
+        return app(\App\Actions\Landlord\CreateTenant::class)->handle($tenantFormData);
     }
 
     protected function getCreatedNotificationMessage(): ?string
