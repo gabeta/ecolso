@@ -23,17 +23,6 @@ class TenantResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('description')
-                    ->maxLength(65535),
-                Forms\Components\TextInput::make('domain')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('database')
-                    ->required()
-                    ->maxLength(255),
             ]);
     }
 
@@ -45,10 +34,6 @@ class TenantResource extends Resource
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\TextColumn::make('domain'),
                 Tables\Columns\TextColumn::make('database'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
             ])
             ->filters([
                 //
@@ -57,7 +42,7 @@ class TenantResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                // Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 
