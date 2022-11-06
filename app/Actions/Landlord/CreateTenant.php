@@ -22,7 +22,9 @@ class CreateTenant
                 'description' => $data->description
             ]);
 
-            Artisan::call("tenants:artisan 'migrate --database=tenant'");
+            DB::unprepared("CREATE DATABASE IF NOT EXISTS $data->database;");
+
+            Artisan::call("tenants:artisan --tenant={$tenant->id} -- \"migrate --database=tenant\"");
 
             app(SwitchTenantDatabaseTask::class)->makeCurrent($tenant);
 
