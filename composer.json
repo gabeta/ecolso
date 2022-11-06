@@ -20,6 +20,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
+        "brianium/paratest": "^6.6",
         "doctrine/dbal": "^3.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
@@ -29,6 +30,7 @@
         "nunomaduro/larastan": "^2.0",
         "pestphp/pest": "^1.16",
         "pestphp/pest-plugin-laravel": "^1.1",
+        "pestphp/pest-plugin-parallel": "^1.2",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0"
     },

@@ -18,6 +18,14 @@ return new class extends Migration
             $table->foreignId('user_id')->index();
             $table->string('name');
             $table->boolean('personal_team');
+            $table->string('email')->nullable();
+            $table->string('telephone', 14)->nullable();
+            $table->string('mobile', 14)->nullable();
+            $table->string('location')->nullable();
+            $table->string('latitude', 15)->nullable();
+            $table->string('longitude', 15)->nullable();
+            $table->string('director')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
     }
