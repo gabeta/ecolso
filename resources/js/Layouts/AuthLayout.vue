@@ -62,25 +62,24 @@
     </main>
 </template>
 
-<script>
-    export default {
-        props: {
-            background: {
-                type: String,
-                default: '../../images/auth-image.jpg'
-            },
+<script setup>
+defineProps({
+     background: {
+        type: String,
+        default: '../../images/auth-image.jpg'
+    },
 
-            width: {
-                type: String,
-                default: 'sm'
-            },
+    width: {
+        type: String,
+        default: 'sm'
+    },
 
-            title: {
-                type: String,
-                default: null
-            },
-        }
-    }
+    title: {
+        type: String,
+        default: null
+    },
+});
+
 </script>
 
 <style scoped>

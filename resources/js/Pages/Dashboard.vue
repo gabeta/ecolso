@@ -1,10 +1,10 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
+import MainLayout from '@/Layouts/MainLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
 </script>
 
 <template>
-    <div>
+    <MainLayout>
         <h1>Dashboard</h1>
-    </div>
+    </MainLayout>
 </template>
