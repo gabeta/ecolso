@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SchoolController;
 use App\Models\Landlord\Tenant;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,6 +25,8 @@ $routing = function() {
         Route::get('/', function () {
             return Inertia::render('Dashboard');
         })->name('dashboard');
+
+        Route::resource('schools', SchoolController::class)->except('destroy');
     });
 };
 
