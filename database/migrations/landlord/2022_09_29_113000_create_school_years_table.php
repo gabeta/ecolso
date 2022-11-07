@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->dateTime('begin_at');
-            $table->dateTime('end_at');
+            $table->date('begin_at');
+            $table->date('end_at');
             $table->boolean('is_current');
             $table->unique(['begin_at', 'end_at']);
             $table->timestamps();

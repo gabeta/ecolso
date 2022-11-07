@@ -27,6 +27,13 @@ $routing = function() {
         })->name('dashboard');
 
         Route::resource('schools', SchoolController::class)->except('destroy');
+
+        Route::prefix('/{team}/year/{year?}')
+            ->group(function () {
+                Route::get('/', function () {
+                    return Inertia::render('App/Dashboard');
+                })->name('app.dashboard');
+            });
     });
 };
 
