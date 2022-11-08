@@ -66,7 +66,7 @@
                     <ul class="mt-3">
                         <li class="px-3 py-2 rounded-sm mb-1 last:mb-0"
                             :class="route().current('app.dashboard') && 'bg-gray-900'">
-                            <Link :href="route('app.dashboard', {'team': $page.props.user.current_team})"
+                            <Link :href="route('app.dashboard', {'team': $page.props.current_team, 'year': $page.props.current_year.slug})"
                                   class="block text-gray-200 hover:text-white truncate transition duration-150"
                                   :class="route().current('saas.dashboard') && 'hover:text-gray-200'">
                                 <div class="flex items-center">

@@ -2,12 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Landlord\SchoolYear;
+use App\Models\Team;
 use Closure;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class ResolveSchoolYearMiddleware
+class ResolveTeamMiddleware
 {
     /**
      * Handle an incoming request.
@@ -18,17 +18,13 @@ class ResolveSchoolYearMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $year = SchoolYear::where('slug', $request->year)->latest('begin_at')->first();
+        $user = $request->user();
 
-        if (is_null($year)) {
-            $year = SchoolYear::where('is_current', 1)->first();
+        $team = Team::where('id', $request->team)->firstOrFail();
 
-            return redirect()->route('app.dashboard', ['team' => $request->team, 'year' => $year]);
-        }
+        // app('tenant')->put($user->currentTeam);
 
-        Inertia::share('all_years', fn() => SchoolYear::all());
-
-        Inertia::share('current_year', fn() => $year);
+        Inertia::share('current_team', fn() => $team);
 
         return $next($request);
     }

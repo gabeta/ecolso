@@ -45,7 +45,8 @@ class Kernel extends HttpKernel
         ],
 
         'saas' => [
-            \App\Http\Middleware\ResolveSchoolYearMiddleware::class
+            \App\Http\Middleware\ResolveSchoolYearMiddleware::class,
+            \App\Http\Middleware\ResolveTeamMiddleware::class,
         ],
 
         'api' => [
