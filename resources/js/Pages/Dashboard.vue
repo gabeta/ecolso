@@ -5,6 +5,9 @@ import Welcome from '@/Components/Welcome.vue';
 
 <template>
     <MainLayout>
-        <h1>Dashboard</h1>
+        <div class="mt-20">
+
+            <h1>Dashboard</h1>
+        </div>
     </MainLayout>
 </template>
