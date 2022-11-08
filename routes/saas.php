@@ -29,6 +29,7 @@ $routing = function() {
         Route::resource('schools', SchoolController::class)->except('destroy');
 
         Route::prefix('/{team}/year/{year?}')
+            ->middleware('saas')
             ->group(function () {
                 Route::get('/', function () {
                     return Inertia::render('App/Dashboard');

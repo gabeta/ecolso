@@ -44,6 +44,10 @@ class Kernel extends HttpKernel
             \Spatie\Multitenancy\Http\Middleware\EnsureValidTenantSession::class,
         ],
 
+        'saas' => [
+            \App\Http\Middleware\ResolveSchoolYearMiddleware::class
+        ],
+
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
