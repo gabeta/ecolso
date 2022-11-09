@@ -4,6 +4,7 @@ use App\Http\Controllers\SchoolController;
 use App\Models\Landlord\Tenant;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Laravel\Jetstream\Http\Controllers\Inertia\TeamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +31,17 @@ $routing = function() {
 
         Route::prefix('/{team}/year/{year?}')
             ->middleware('saas')
+            ->name('app.')
             ->group(function () {
                 Route::get('/', function () {
                     return Inertia::render('App/Dashboard');
-                })->name('app.dashboard');
+                })->name('dashboard');
+
+                Route::prefix('settings/')
+                    ->name('settings.')
+                    ->group(function() {
+                        Route::get('/general', [TeamController::class, 'show'])->name('general');
+                    });
             });
     });
 };
