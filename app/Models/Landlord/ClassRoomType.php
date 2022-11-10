@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Multitenancy\Models\Concerns\UsesLandlordConnection;
 
-class SchoolClassType extends Model
+class ClassRoomType extends Model
 {
     use UsesLandlordConnection;
     use HasFactory;

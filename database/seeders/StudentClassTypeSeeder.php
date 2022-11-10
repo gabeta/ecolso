@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Landlord\ClassRoomType;
 use App\Models\Landlord\Discipline;
 use App\Models\Landlord\DisciplineTest;
-use App\Models\Landlord\SchoolClassType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -121,7 +121,7 @@ class StudentClassTypeSeeder extends Seeder
         /**
          * Seeder of School class types
          */
-        DB::table('school_class_types')->truncate();
+        DB::table('class_room_types')->truncate();
 
         $classTypes =  [
             [
@@ -175,7 +175,7 @@ class StudentClassTypeSeeder extends Seeder
         ];
 
         foreach ($classTypes as $type) {
-            $class = SchoolClassType::create([
+            $class = ClassRoomType::create([
                 'code' => $type['code'],
                 'name' => $type['name'],
                 'description' => $type['description'],
