@@ -28,14 +28,14 @@ defineProps({
         <hr class="m-4">
         <div class="grid grid-cols-6 gap-4">
             <div class="col-span-2" v-for="(team, index) in teams" :key="index">
-                <Link :href="route('app.dashboard', {'team': team})" class="block p-6  bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                <a :href="route('app.dashboard', {'team': team})" class="block p-6  bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                         {{ team.name }}
                     </h5>
                     <p class="font-normal text-gray-700 dark:text-gray-400">
                         Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
                     </p>
-                </Link>
+                </a>
             </div>
         </div>
     </MainLayout>

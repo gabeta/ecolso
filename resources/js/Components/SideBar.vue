@@ -58,17 +58,17 @@
             <div class="space-y-8">
                 <!-- Pages group -->
                 <div>
-                    <h3 class="text-xs uppercase text-gray-500 font-semibold pl-3">
+                    <h3 class="text-sm uppercase text-gray-500 font-semibold pl-3">
                         <span class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
                               aria-hidden="true">•••</span>
-                        <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Pages</span>
+                        <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">{{ $page.props.current_team.name }}</span>
                     </h3>
                     <ul class="mt-3">
                         <li class="px-3 py-2 rounded-sm mb-1 last:mb-0"
                             :class="route().current('app.dashboard') && 'bg-gray-900'">
                             <Link :href="appRoute('dashboard')"
                                   class="block text-gray-200 hover:text-white truncate transition duration-150"
-                                  :class="route().current('saas.dashboard') && 'hover:text-gray-200'">
+                                  :class="route().current('app.dashboard') && 'hover:text-gray-200'">
                                 <div class="flex items-center">
                                     <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
                                         <path class="fill-current text-gray-400"
@@ -89,7 +89,148 @@
                             </Link>
                         </li>
 
-                        <side-bar-link-group v-slot="parentLink" :activeCondition="route().current('settings.*')">
+                        <li class="px-3 py-2 rounded-sm mb-1 last:mb-0"
+                            :class="route().current('app.settings') && 'bg-gray-900'">
+                            <Link :href="appRoute('settings')"
+                                  class="block text-gray-200 hover:text-white truncate transition duration-150"
+                                  :class="route().current('app.settings') && 'hover:text-gray-200'">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                                        <path class="fill-current text-gray-600"
+                                                :class="route().current('app.settings') && 'text-indigo-500'"
+                                                d="M19.714 14.7l-7.007 7.007-1.414-1.414 7.007-7.007c-.195-.4-.298-.84-.3-1.286a3 3 0 113 3 2.969 2.969 0 01-1.286-.3z"/>
+                                        <path class="fill-current text-gray-400"
+                                                :class="route().current('app.settings') && 'text-indigo-300'"
+                                                d="M10.714 18.3c.4-.195.84-.298 1.286-.3a3 3 0 11-3 3c.002-.446.105-.885.3-1.286l-6.007-6.007 1.414-1.414 6.007 6.007z"/>
+                                        <path class="fill-current text-gray-600"
+                                                :class="route().current('app.settings') && 'text-indigo-500'"
+                                                d="M5.7 10.714c.195.4.298.84.3 1.286a3 3 0 11-3-3c.446.002.885.105 1.286.3l7.007-7.007 1.414 1.414L5.7 10.714z"/>
+                                        <path class="fill-current text-gray-400"
+                                                :class="route().current('app.settings') && 'text-indigo-300'"
+                                                d="M19.707 9.292a3.012 3.012 0 00-1.415 1.415L13.286 5.7c-.4.195-.84.298-1.286.3a3 3 0 113-3 2.969 2.969 0 01-.3 1.286l5.007 5.006z"/>
+                                    </svg>
+                                    <span
+                                        class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        Classes
+                                    </span>
+                                </div>
+                            </Link>
+                        </li>
+
+
+                        <li class="px-3 py-2 rounded-sm mb-1 last:mb-0"
+                            :class="route().current('app.students.*') && 'bg-gray-900'">
+                            <Link :href="appRoute('students.index')"
+                                  class="block text-gray-200 hover:text-white truncate transition duration-150"
+                                  :class="route().current('app.students.*') && 'hover:text-gray-200'">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                                        <path class="fill-current text-gray-600"
+                                                :class="route().current('app.students.*') && 'text-indigo-500'"
+                                                d="M19.714 14.7l-7.007 7.007-1.414-1.414 7.007-7.007c-.195-.4-.298-.84-.3-1.286a3 3 0 113 3 2.969 2.969 0 01-1.286-.3z"/>
+                                        <path class="fill-current text-gray-400"
+                                                :class="route().current('app.students.*') && 'text-indigo-300'"
+                                                d="M10.714 18.3c.4-.195.84-.298 1.286-.3a3 3 0 11-3 3c.002-.446.105-.885.3-1.286l-6.007-6.007 1.414-1.414 6.007 6.007z"/>
+                                        <path class="fill-current text-gray-600"
+                                                :class="route().current('app.students.*') && 'text-indigo-500'"
+                                                d="M5.7 10.714c.195.4.298.84.3 1.286a3 3 0 11-3-3c.446.002.885.105 1.286.3l7.007-7.007 1.414 1.414L5.7 10.714z"/>
+                                        <path class="fill-current text-gray-400"
+                                                :class="route().current('app.students.*') && 'text-indigo-300'"
+                                                d="M19.707 9.292a3.012 3.012 0 00-1.415 1.415L13.286 5.7c-.4.195-.84.298-1.286.3a3 3 0 113-3 2.969 2.969 0 01-.3 1.286l5.007 5.006z"/>
+                                    </svg>
+                                    <span
+                                        class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        Élèves
+                                    </span>
+                                </div>
+                            </Link>
+                        </li>
+
+                        <li class="px-3 py-2 rounded-sm mb-1 last:mb-0"
+                            :class="route().current('app.rooms.*') && 'bg-gray-900'">
+                            <Link :href="appRoute('rooms.index')"
+                                  class="block text-gray-200 hover:text-white truncate transition duration-150"
+                                  :class="route().current('app.rooms.*') && 'hover:text-gray-200'">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                                        <path class="fill-current text-gray-600"
+                                                :class="route().current('app.rooms.*') && 'text-indigo-500'"
+                                                d="M19.714 14.7l-7.007 7.007-1.414-1.414 7.007-7.007c-.195-.4-.298-.84-.3-1.286a3 3 0 113 3 2.969 2.969 0 01-1.286-.3z"/>
+                                        <path class="fill-current text-gray-400"
+                                                :class="route().current('app.rooms.*') && 'text-indigo-300'"
+                                                d="M10.714 18.3c.4-.195.84-.298 1.286-.3a3 3 0 11-3 3c.002-.446.105-.885.3-1.286l-6.007-6.007 1.414-1.414 6.007 6.007z"/>
+                                        <path class="fill-current text-gray-600"
+                                                :class="route().current('app.rooms.*') && 'text-indigo-500'"
+                                                d="M5.7 10.714c.195.4.298.84.3 1.286a3 3 0 11-3-3c.446.002.885.105 1.286.3l7.007-7.007 1.414 1.414L5.7 10.714z"/>
+                                        <path class="fill-current text-gray-400"
+                                                :class="route().current('app.rooms.*') && 'text-indigo-300'"
+                                                d="M19.707 9.292a3.012 3.012 0 00-1.415 1.415L13.286 5.7c-.4.195-.84.298-1.286.3a3 3 0 113-3 2.969 2.969 0 01-.3 1.286l5.007 5.006z"/>
+                                    </svg>
+                                    <span
+                                        class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        Salles
+                                    </span>
+                                </div>
+                            </Link>
+                        </li>
+
+                        <li class="px-3 py-2 rounded-sm mb-1 last:mb-0"
+                            :class="route().current('app.settings') && 'bg-gray-900'">
+                            <Link :href="appRoute('settings')"
+                                  class="block text-gray-200 hover:text-white truncate transition duration-150"
+                                  :class="route().current('app.settings') && 'hover:text-gray-200'">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                                        <path class="fill-current text-gray-600"
+                                                :class="route().current('app.settings') && 'text-indigo-500'"
+                                                d="M19.714 14.7l-7.007 7.007-1.414-1.414 7.007-7.007c-.195-.4-.298-.84-.3-1.286a3 3 0 113 3 2.969 2.969 0 01-1.286-.3z"/>
+                                        <path class="fill-current text-gray-400"
+                                                :class="route().current('app.settings') && 'text-indigo-300'"
+                                                d="M10.714 18.3c.4-.195.84-.298 1.286-.3a3 3 0 11-3 3c.002-.446.105-.885.3-1.286l-6.007-6.007 1.414-1.414 6.007 6.007z"/>
+                                        <path class="fill-current text-gray-600"
+                                                :class="route().current('app.settings') && 'text-indigo-500'"
+                                                d="M5.7 10.714c.195.4.298.84.3 1.286a3 3 0 11-3-3c.446.002.885.105 1.286.3l7.007-7.007 1.414 1.414L5.7 10.714z"/>
+                                        <path class="fill-current text-gray-400"
+                                                :class="route().current('app.settings') && 'text-indigo-300'"
+                                                d="M19.707 9.292a3.012 3.012 0 00-1.415 1.415L13.286 5.7c-.4.195-.84.298-1.286.3a3 3 0 113-3 2.969 2.969 0 01-.3 1.286l5.007 5.006z"/>
+                                    </svg>
+                                    <span
+                                        class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        Utilisateurs
+                                    </span>
+                                </div>
+                            </Link>
+                        </li>
+
+                        <li class="px-3 py-2 rounded-sm mb-1 last:mb-0"
+                            :class="route().current('app.settings') && 'bg-gray-900'">
+                            <Link :href="appRoute('settings')"
+                                  class="block text-gray-200 hover:text-white truncate transition duration-150"
+                                  :class="route().current('app.settings') && 'hover:text-gray-200'">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                                        <path class="fill-current text-gray-600"
+                                                :class="route().current('app.settings') && 'text-indigo-500'"
+                                                d="M19.714 14.7l-7.007 7.007-1.414-1.414 7.007-7.007c-.195-.4-.298-.84-.3-1.286a3 3 0 113 3 2.969 2.969 0 01-1.286-.3z"/>
+                                        <path class="fill-current text-gray-400"
+                                                :class="route().current('app.settings') && 'text-indigo-300'"
+                                                d="M10.714 18.3c.4-.195.84-.298 1.286-.3a3 3 0 11-3 3c.002-.446.105-.885.3-1.286l-6.007-6.007 1.414-1.414 6.007 6.007z"/>
+                                        <path class="fill-current text-gray-600"
+                                                :class="route().current('app.settings') && 'text-indigo-500'"
+                                                d="M5.7 10.714c.195.4.298.84.3 1.286a3 3 0 11-3-3c.446.002.885.105 1.286.3l7.007-7.007 1.414 1.414L5.7 10.714z"/>
+                                        <path class="fill-current text-gray-400"
+                                                :class="route().current('app.settings') && 'text-indigo-300'"
+                                                d="M19.707 9.292a3.012 3.012 0 00-1.415 1.415L13.286 5.7c-.4.195-.84.298-1.286.3a3 3 0 113-3 2.969 2.969 0 01-.3 1.286l5.007 5.006z"/>
+                                    </svg>
+                                    <span
+                                        class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        Paramètres
+                                    </span>
+                                </div>
+                            </Link>
+                        </li>
+
+                        <!--side-bar-link-group v-slot="parentLink" :activeCondition="route().current('app.settings.*')">
                             <a class="block text-gray-200 hover:text-white truncate transition duration-150"
                                :class="route().current('app.settings.*') && 'hover:text-gray-200'" href="#0"
                                @click.prevent="sidebarExpanded ? parentLink.handleClick() : sidebarExpanded = true">
@@ -142,7 +283,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </side-bar-link-group>
+                        </side-bar-link-group-->
                     </ul>
                 </div>
             </div>

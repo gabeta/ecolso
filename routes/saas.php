@@ -37,11 +37,14 @@ $routing = function() {
                     return Inertia::render('App/Dashboard');
                 })->name('dashboard');
 
-                Route::prefix('settings/')
-                    ->name('settings.')
-                    ->group(function() {
-                        Route::get('/general', [TeamController::class, 'show'])->name('general');
-                    });
+
+                Route::resource('classrooms', TeamController::class);
+
+                Route::resource('rooms', TeamController::class);
+
+                Route::resource('students', TeamController::class);
+
+                Route::get('/settings', [TeamController::class, 'show'])->name('settings');
             });
     });
 };

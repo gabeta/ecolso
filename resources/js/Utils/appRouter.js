@@ -10,8 +10,6 @@ export const appRoute = {
     install: (v, options) => {
         const r = (name, params) => resolveRoute(name, params);
 
-        console.log('okey');
-
         v.mixin({
             methods: {
                 appRoute: r,
