@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Sluggable\SlugOptions;
+use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class Room extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
     use BelongsToTeam;
+    use HasFactory;
+    use UsesTenantConnection;
+    use SoftDeletes;
 
     protected $guarded = [];
 

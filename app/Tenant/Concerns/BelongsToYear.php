@@ -3,7 +3,7 @@
 namespace App\Tenant\Concerns;
 
 use App\Models\Landlord\SchoolYear;
-use App\Tenant\Scopes\TenantScope;
+use App\Tenant\Scopes\YearScope;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait BelongsToYear
@@ -11,7 +11,7 @@ trait BelongsToYear
     public static function bootBelongsToYear(): void
     {
         static::addGlobalScope(
-            new TenantScope(app('currentYear'))
+            new YearScope(app('currentYear'))
         );
 
         static::observe(

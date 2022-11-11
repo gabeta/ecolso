@@ -18,7 +18,7 @@ class ResolveSchoolYearMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $year = SchoolYear::where('slug', $request->year)->latest('begin_at')->first();
+        $year = SchoolYear::where('slug', $request->year)->first();
 
         if (is_null($year)) {
             $year = SchoolYear::where('is_current', 1)->first();
@@ -26,7 +26,7 @@ class ResolveSchoolYearMiddleware
             return redirect()->route('app.dashboard', ['team' => $request->team, 'year' => $year]);
         }
 
-        Inertia::share('all_years', fn() => SchoolYear::all());
+        Inertia::share('all_years', fn() => SchoolYear::latest('begin_at')->get());
         Inertia::share('current_year', fn() => $year);
 
         app('currentYear')->put($year);

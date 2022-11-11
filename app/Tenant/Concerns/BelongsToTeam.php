@@ -3,7 +3,7 @@
 namespace App\Tenant\Concerns;
 
 use App\Models\Team;
-use App\Tenant\Scopes\TenantScope;
+use App\Tenant\Scopes\TeamScope;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait BelongsToTeam
@@ -11,7 +11,7 @@ trait BelongsToTeam
     public static function bootBelongsToTeam(): void
     {
         static::addGlobalScope(
-            new TenantScope(app('currentTeam'))
+            new TeamScope(app('currentTeam'))
         );
 
         static::observe(

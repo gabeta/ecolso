@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ClassRoomController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SchoolController;
 use App\Models\Landlord\Tenant;
 use Illuminate\Support\Facades\Route;
@@ -38,9 +40,9 @@ $routing = function() {
                 })->name('dashboard');
 
 
-                Route::resource('classrooms', TeamController::class);
+                Route::resource('classrooms', ClassRoomController::class);
 
-                Route::resource('rooms', TeamController::class);
+                Route::resource('rooms', RoomController::class);
 
                 Route::resource('students', TeamController::class);
 

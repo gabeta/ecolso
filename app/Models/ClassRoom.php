@@ -9,13 +9,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class ClassRoom extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
     use BelongsToTeam;
     use BelongsToYear;
+    use HasFactory;
+    use UsesTenantConnection;
+    use SoftDeletes;
 
     protected $guarded = [];
 
