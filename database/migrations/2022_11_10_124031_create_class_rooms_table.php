@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('class_rooms', function (Blueprint $table) {
             $table->id();
+            $table->uuid();
+            $table->string('name');
+            $table->foreignId('class_room_type_id');
+            $table->foreignId('room_id');
+            $table->foreignId('team_id');
+            $table->foreignId('school_year_id');
+            $table->foreignId('master_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
