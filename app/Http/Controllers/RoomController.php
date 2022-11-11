@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Landlord\RoomType;
 use App\Models\Room;
+use App\Table\InertiaTable;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class RoomController extends Controller
 {
@@ -15,11 +18,24 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = Room::all();
+        $rooms = QueryBuilder::for(Room::class)
+                    ->with('type')
+                    ->paginate();
+
+        $types = RoomType::whereNotNull('room_type_id')->get();
 
         return Inertia::render('App/Rooms/Index', [
             'rooms' => $rooms
-        ]);
+        ])->table(function (InertiaTable $table) use ($types) {
+            $table->disableGlobalSearch()
+                ->addSearch('name', 'Libéllé', ['position' => 2, 'type' => 'text', 'placeholder' => 'Rechercher par le libéllé'])
+                ->addFilter(
+                    'type',
+                    'Type:',
+                    $types->pluck('name', 'id')->toArray(),
+                    ['position' => 2, 'placeholder' => 'Rechercher par le type']
+                );
+        });;
     }
 
     /**

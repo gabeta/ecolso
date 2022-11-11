@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Table\InertiaTable;
 use Illuminate\Support\ServiceProvider;
+use Inertia\Response;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 
     /**
@@ -23,6 +24,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Response::macro('table', function (callable $withTableBuilder = null) {
+            $tableBuilder = new InertiaTable(request());
+
+            if ($withTableBuilder) {
+                $withTableBuilder($tableBuilder);
+            }
+
+            return $tableBuilder->applyTo($this);
+        });
     }
 }

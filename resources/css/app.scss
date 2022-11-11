@@ -12,3 +12,23 @@
 @import 'partials/theme.scss';
 
 @import 'tailwindcss/utilities';
+@import "@vueform/multiselect/themes/default.css";
+
+
+/** Input multiselect **/
+.multiselect-input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    color: rgb(51 65 85)!important;
+    border: 2px solid rgb(203, 213, 225) !important;
+    background-color: #fff;
+    border-radius: 0.5rem !important;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    padding-top: 0.05rem !important;
+    padding-bottom: 0.05rem !important;
+}
