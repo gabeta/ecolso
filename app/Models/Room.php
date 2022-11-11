@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Landlord\RoomType;
+use App\Tenant\Concerns\BelongsToTeam;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,6 +14,7 @@ class Room extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use BelongsToTeam;
 
     protected $guarded = [];
 

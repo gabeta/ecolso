@@ -27,8 +27,9 @@ class ResolveSchoolYearMiddleware
         }
 
         Inertia::share('all_years', fn() => SchoolYear::all());
-
         Inertia::share('current_year', fn() => $year);
+
+        app('currentYear')->put($year);
 
         return $next($request);
     }

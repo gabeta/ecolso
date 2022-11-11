@@ -22,7 +22,9 @@ class ResolveTeamMiddleware
 
         $team = Team::where('id', $request->team)->firstOrFail();
 
-        // app('tenant')->put($user->currentTeam);
+        abort_unless($user->belongsTo($team), 404);
+
+        app('currentTeam')->put($team);
 
         Inertia::share('current_team', fn() => $team);
 
