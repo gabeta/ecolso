@@ -13,6 +13,14 @@
 
         <!-- Scripts -->
         @routes
+        <script>
+            function appRoute(name, params = {}) {
+                const page = JSON.parse(document.getElementById('app').dataset.page)
+                const props = page.props
+
+                return route('app.'+name, Object.assign({'team': props.current_team, 'year': props.current_year.slug}, params))
+            }
+        </script>
         @vite('resources/js/app.js')
         @inertiaHead
     </head>

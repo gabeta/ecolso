@@ -3,6 +3,7 @@
 namespace App\Tenant\Concerns;
 
 use App\Models\Landlord\SchoolYear;
+use App\Tenant\Observers\YearObserver;
 use App\Tenant\Scopes\YearScope;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -15,7 +16,7 @@ trait BelongsToYear
         );
 
         static::observe(
-            app("observeYear")
+            app(YearObserver::class)
         );
     }
 

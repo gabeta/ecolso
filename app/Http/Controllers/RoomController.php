@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Rooms\CreateRoom;
+use App\Data\RoomFormData;
 use App\Models\Landlord\RoomType;
 use App\Models\Room;
 use App\Table\InertiaTable;
@@ -19,13 +21,14 @@ class RoomController extends Controller
     public function index()
     {
         $rooms = QueryBuilder::for(Room::class)
-                    ->with('type')
+                    ->with('types')
                     ->paginate();
 
         $types = RoomType::whereNotNull('room_type_id')->get();
 
         return Inertia::render('App/Rooms/Index', [
-            'rooms' => $rooms
+            'rooms' => $rooms,
+            'types' => $types->selectable('name', 'id')
         ])->table(function (InertiaTable $table) use ($types) {
             $table->disableGlobalSearch()
                 ->addSearch('name', 'Libéllé', ['position' => 2, 'type' => 'text', 'placeholder' => 'Rechercher par le libéllé'])
@@ -33,19 +36,10 @@ class RoomController extends Controller
                     'type',
                     'Type:',
                     $types->pluck('name', 'id')->toArray(),
-                    ['position' => 2, 'placeholder' => 'Rechercher par le type']
+                    ['position' => 2, 'placeholder' => 'Rechercher par le type'],
+                    //['mode' => 'tags']
                 );
         });;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -56,7 +50,16 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string:255'],
+            'types' => ['required', 'array']
+        ]);
+
+        app(CreateRoom::class)->handle(
+            RoomFormData::fromRequest($request)
+        );
+
+        return redirect()->appRoute('rooms.index');
     }
 
     /**
@@ -66,17 +69,6 @@ class RoomController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Room $room)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Room $room)
     {
         //
     }

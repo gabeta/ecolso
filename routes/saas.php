@@ -39,10 +39,9 @@ $routing = function() {
                     return Inertia::render('App/Dashboard');
                 })->name('dashboard');
 
-
                 Route::resource('classrooms', ClassRoomController::class);
 
-                Route::resource('rooms', RoomController::class);
+                Route::resource('rooms', RoomController::class)->except(['create', 'edit']);
 
                 Route::resource('students', TeamController::class);
 

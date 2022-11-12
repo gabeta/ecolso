@@ -69,8 +69,8 @@ class Team extends JetstreamTeam
      *
      * @return string
      */
-    public function getRouteKeyName()
+    /*public function getRouteKeyName()
     {
         return "slug";
-    }
+    }*/
 }

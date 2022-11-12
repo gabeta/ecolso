@@ -3,6 +3,7 @@
 namespace App\Tenant\Concerns;
 
 use App\Models\Team;
+use App\Tenant\Observers\TeamObserver;
 use App\Tenant\Scopes\TeamScope;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -15,7 +16,7 @@ trait BelongsToTeam
         );
 
         static::observe(
-            app("observeTeam")
+            app(TeamObserver::class)
         );
     }
 

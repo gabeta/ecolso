@@ -25,15 +25,14 @@ class TenantServiceProvider extends ServiceProvider
                 return new Tenant();
             });
 
-            $this->app->singleton("observe{$tenant}", function () use ($tenant) {
-                return new TenantObserver(app("current{$tenant}"));
+            $this->app->singleton("App\Tenant\Observers\\{$tenant}Observer", function () use ($tenant) {
+                return new ("App\Tenant\Observers\\{$tenant}Observer")(app("current{$tenant}"));
+            });
+
+            Request::macro("current{$tenant}", function () use ($tenant) {
+                return app("current{$tenant}")->get();
             });
         }
-
-
-        /*Request::macro('tenant', function () {
-            return app('tenant')->get();
-        });*/
 
         /*
         Builder::macro('tenable', function () {

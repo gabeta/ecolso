@@ -5,7 +5,7 @@ namespace App\Tenant\Observers;
 use App\Tenant\TenantContract;
 use Illuminate\Database\Eloquent\Model;
 
-class TenantObserver
+abstract class TenantObserver
 {
     /**
      * @var TenantContract

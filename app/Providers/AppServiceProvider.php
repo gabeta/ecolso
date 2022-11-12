@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Macros\Collection\Selectable;
+use App\Macros\Redirector\AppRoute;
 use App\Table\InertiaTable;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Response;
 
@@ -15,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        Collection::macro('selectable', app(Selectable::class)());
+
+        Redirector::macro('appRoute', app(AppRoute::class)());
     }
 
     /**
