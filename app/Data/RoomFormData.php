@@ -2,7 +2,7 @@
 
 namespace App\Data;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\RoomFormRequest;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class RoomFormData extends DataTransferObject
@@ -12,7 +12,7 @@ class RoomFormData extends DataTransferObject
     public readonly array $types;
 
     public static function fromRequest(
-        Request $request
+        RoomFormRequest $request
     ): self {
         return new self([
             'name' => $request->get('name'),

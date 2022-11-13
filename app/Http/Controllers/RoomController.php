@@ -3,25 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Rooms\CreateRoom;
+use App\Actions\Rooms\UpdateRoom;
 use App\Data\RoomFormData;
+use App\Http\Requests\RoomFormRequest;
 use App\Models\Landlord\RoomType;
+use App\Models\Landlord\SchoolYear;
 use App\Models\Room;
+use App\Models\Team;
 use App\Table\InertiaTable;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class RoomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $rooms = QueryBuilder::for(Room::class)
                     ->with('types')
+                    ->allowedFilters([
+                        'name',
+                        // AllowedFilter::callback('type', fn($builder, $value) => $builder->whereHas('ecolso_main.types', fn($query) => $query->where('room_type_id', $value))),
+                    ])
                     ->paginate();
 
         $types = RoomType::whereNotNull('room_type_id')->get();
@@ -42,19 +45,8 @@ class RoomController extends Controller
         });;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(RoomFormRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string:255'],
-            'types' => ['required', 'array']
-        ]);
-
         app(CreateRoom::class)->handle(
             RoomFormData::fromRequest($request)
         );
@@ -73,24 +65,16 @@ class RoomController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Room $room)
+    public function update(RoomFormRequest $request, Team $team, SchoolYear $year, Room $room)
     {
-        //
+        app(UpdateRoom::class)->handle(
+            $room,
+            RoomFormData::fromRequest($request)
+        );
+
+        return redirect()->appRoute('rooms.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Room  $room
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Room $room)
     {
         //

@@ -10,7 +10,7 @@
 
                     <template #headerButtons>
                         <i @click.prevent="openSearchModal" class="fad fa-search cursor-pointer mr-3"></i>
-                        <i  @click.prevent="openAddModal" class="fad fa-plus-circle cursor-pointer"></i>
+                        <i  @click.prevent="openModal" class="fad fa-plus-circle cursor-pointer"></i>
                     </template>
 
                     <template #tableHeader>
@@ -24,8 +24,19 @@
                         <tr v-for="(room, index) in rooms.data" :key="room.id">
                             <td>{{ index + 1 }}</td>
                             <td>{{ room.name }}</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                                <span v-for="type in room.types" :key="type.id" class="m-1 text-xs inline-flex font-medium bg-light-blue-100 text-light-blue-600 rounded-full text-center px-2.5 py-1 whitespace-nowrap">
+                                    {{ type.name }}
+                                </span>
+                            </td>
+                            <td>
+                                <SecondaryButton @click.prevent="openModal(room)">
+                                    <span class="fa fa-pencil"></span>
+                                </SecondaryButton>
+                                <!--DangerButton class="ml-4" @click.prevent="openModal(room)">
+                                    <span class="fa fa-trash"></span>
+                                </DangerButton-->
+                            </td>
                         </tr>
                     </template>
                 </Datatables>
@@ -41,8 +52,8 @@
                 <GlobalFilter @search-launched="closeSearchModal()" />
             </template>
         </DialogModal>
-        <DialogModal :show="addModal" @close="closeAddModal()" max-width="xl">
-            <template #title>Création d'un espace</template>
+        <DialogModal :show="formModal" @close="closeModal()" max-width="xl">
+            <template #title>{{ room.id ? 'Mise à jour ' : 'Création' }} d'un espace</template>
             <template #content>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="col-span-2"
@@ -69,8 +80,8 @@
                 </div>
             </template>
             <template #footer>
-                <PrimaryButton @click="createRoom">
-                    <template #icon><i class="fad fa-search text-xs ml-1"></i></template> Ajouter
+                <PrimaryButton @click="submitForm">
+                    {{ room.id ? 'Mettre à jour ' : 'Ajouter' }}
                 </PrimaryButton>
             </template>
         </DialogModal>
@@ -78,7 +89,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { ref, reactive } from "vue"
 import AppLayout from '@/Layouts/AppLayout.vue'
 import Pagination from '@/Components/Pagination.vue'
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
@@ -89,15 +100,16 @@ import JetLabel from '@/Components/InputLabel.vue'
 import JetInput from '@/Components/TextInput.vue'
 import Multiselect from '@vueform/multiselect'
 import PrimaryButton from '@/Components/PrimaryButton.vue'
+import SecondaryButton from '@/Components/SecondaryButton.vue'
+import DangerButton from '@/Components/DangerButton.vue'
 import { toast } from '@/Utils/utils.js'
 import InputError from '@/Components/InputError.vue';
+import * as _ from "underscore"
 
 defineProps({
     rooms: Object,
     types: Array
 })
-
-console.log(appRoute('rooms.store'))
 
 const form = useForm({
     name: null,
@@ -105,7 +117,8 @@ const form = useForm({
 })
 
 const searchModal = ref(false)
-const addModal = ref(false)
+const formModal = ref(false)
+const room = ref(null)
 
 const closeSearchModal = () => {
     ref(searchModal).value = false
@@ -115,12 +128,30 @@ const openSearchModal = () => {
     ref(searchModal).value = true
 }
 
-const closeAddModal = () => {
-    ref(addModal).value = false
+const closeModal = () => {
+    ref(formModal).value = false
 }
 
-const openAddModal = () => {
-    ref(addModal).value = true
+const openModal = (r = null) => {
+    if (r) {
+        ref(room).value = r
+        form.name = r.name
+        form.types = _.pluck(r.types, 'id')
+    } else {
+        ref(room).value = null
+        form.name = null
+        form.types = []
+    }
+
+    ref(formModal).value = true
+}
+
+const submitForm = () => {
+    if (room.value.id) {
+        updateRoom(room.value)
+    } else {
+        createRoom()
+    }
 }
 
 const createRoom = async () => {
@@ -131,6 +162,17 @@ const createRoom = async () => {
             form.clearErrors();
             form.reset();
             await toast('success', 'Espace crée avec succès.');
+        }
+    });
+};
+
+const updateRoom = async (r) => {
+    form.put(appRoute('rooms.update', {'room': r}), {
+        errorBag: 'updateRoom',
+        preserveScroll: true,
+        onSuccess: async function() {
+            form.clearErrors();
+            await toast('success', 'Espace mis à jour avec succès.');
         }
     });
 };
