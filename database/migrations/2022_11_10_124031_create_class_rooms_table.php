@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('room_id');
             $table->foreignId('team_id');
             $table->foreignId('school_year_id');
-            $table->foreignId('master_id');
+            $table->foreignId('master_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

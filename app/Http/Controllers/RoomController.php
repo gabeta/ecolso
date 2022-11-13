@@ -42,7 +42,7 @@ class RoomController extends Controller
                     ['position' => 2, 'placeholder' => 'Rechercher par le type'],
                     //['mode' => 'tags']
                 );
-        });;
+        });
     }
 
     public function store(RoomFormRequest $request)

@@ -26,6 +26,11 @@ class ClassRoom extends Model
         return $this->belongsTo(ClassRoomType::class);
     }
 
+    public function master(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'master_id');
+    }
+
     public function room(): BelongsTo
     {
         return $this->belongsTo(Room::class);

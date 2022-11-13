@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\ClassRoom;
+use App\Models\Landlord\ClassRoomType;
+use App\Models\Room;
+use App\Table\InertiaTable;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ClassRoomController extends Controller
 {
@@ -15,11 +19,33 @@ class ClassRoomController extends Controller
      */
     public function index()
     {
-        $classRooms = ClassRoom::all();
+        $classRooms = QueryBuilder::for(ClassRoom::class)
+                    ->with(['types', 'room', 'master'])
+                    ->allowedFilters([
+                        'name',
+                        // AllowedFilter::callback('type', fn($builder, $value) => $builder->whereHas('ecolso_main.types', fn($query) => $query->where('room_type_id', $value))),
+                    ])
+                    ->paginate();
+
+        $types = ClassRoomType::all();
+
+        $rooms = Room::all();
 
         return Inertia::render('App/ClassRooms/Index', [
-            'rooms' => $classRooms
-        ]);
+            'classRooms' => $classRooms,
+            'types' => $types->selectable('name', 'id'),
+            'rooms' => $rooms->selectable('name', 'id')
+        ])->table(function (InertiaTable $table) use ($types) {
+            $table->disableGlobalSearch()
+                ->addSearch('name', 'Libéllé', ['position' => 2, 'type' => 'text', 'placeholder' => 'Rechercher par le libéllé'])
+                ->addFilter(
+                    'type',
+                    'Type:',
+                    $types->pluck('name', 'id')->toArray(),
+                    ['position' => 2, 'placeholder' => 'Rechercher par le type'],
+                    //['mode' => 'tags']
+                );
+        });
     }
 
     /**
