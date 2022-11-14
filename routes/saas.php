@@ -5,6 +5,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SchoolController;
 use App\Models\Landlord\Tenant;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 use Inertia\Inertia;
 use Laravel\Jetstream\Http\Controllers\Inertia\TeamController;
 
@@ -50,9 +51,11 @@ $routing = function() {
     });
 };
 
-Tenant::pluck('domain')
-    ->each(function($domain) use ($routing) {
-        Route::domain($domain)
-            ->middleware('tenant')
-            ->group($routing);
-    });
+if (Schema::connection('landlord')->hasTable('tenants')) {
+    Tenant::pluck('domain')
+        ->each(function($domain) use ($routing) {
+            Route::domain($domain)
+                ->middleware('tenant')
+                ->group($routing);
+        });
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Landlord;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,7 +17,9 @@ class TenantFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'database' => $this->faker->word,
+            'domain' => $this->faker->domainName
         ];
     }
 }

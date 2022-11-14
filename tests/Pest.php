@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Landlord\Tenant;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 /*
@@ -14,7 +16,8 @@ use Tests\TestCase;
 |
 */
 
-uses(TestCase::class, RefreshDatabase::class)->in('Feature');
+// , RefreshDatabase::class
+uses(TestCase::class)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------

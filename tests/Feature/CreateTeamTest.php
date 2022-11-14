@@ -7,6 +7,8 @@ test('teams can be created', function () {
 
     $response = $this->post('/teams', [
         'name' => 'Test Team',
+        'director' => 'Soro Gabeta',
+        'mobile' => '0788361076'
     ]);
 
     expect($user->fresh()->ownedTeams)->toHaveCount(2);

@@ -21,6 +21,6 @@ use Inertia\Inertia;
 Route::domain(config('app.domain'))
     ->group(function() {
         Route::get('/', function () {
-            dd('Redirection vers la page officiel');
+            // dd('Redirection vers la page officiel');
         });
     });
