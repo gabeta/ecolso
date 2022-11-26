@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TeamInvitationController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Http\Controllers\CurrentTeamController;
 use Laravel\Jetstream\Http\Controllers\Inertia\ApiTokenController;
@@ -11,7 +12,6 @@ use Laravel\Jetstream\Http\Controllers\Inertia\TeamController;
 use Laravel\Jetstream\Http\Controllers\Inertia\TeamMemberController;
 use Laravel\Jetstream\Http\Controllers\Inertia\TermsOfServiceController;
 use Laravel\Jetstream\Http\Controllers\Inertia\UserProfileController;
-use Laravel\Jetstream\Http\Controllers\TeamInvitationController;
 use Laravel\Jetstream\Jetstream;
 
 Route::group(['middleware' => config('jetstream.middleware', ['web'])], function () {
@@ -71,7 +71,7 @@ Route::group(['middleware' => config('jetstream.middleware', ['web'])], function
                 Route::delete('/team-invitations/{invitation}', [TeamInvitationController::class, 'destroy'])
                             ->name('team-invitations.destroy');
 
-                //Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
+                // Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
             }
         });
     });
