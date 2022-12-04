@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use Domain\Users\Models\User;
 
 test('team names can be updated', function () {
     $this->actingAs($user = User::factory()->withPersonalTeam()->create());

@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Team;
-use App\Models\User;
+use Domain\Teams\Models\Team;
+use Domain\Users\Models\User;
 
 test('teams can be deleted', function () {
     $this->actingAs($user = User::factory()->withPersonalTeam()->create());

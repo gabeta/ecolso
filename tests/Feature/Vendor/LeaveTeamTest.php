@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use Domain\Users\Models\User;
 
 test('users can leave teams', function () {
     $user = User::factory()->withPersonalTeam()->create();

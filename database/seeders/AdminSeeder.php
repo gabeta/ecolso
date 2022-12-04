@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Landlord\Admin;
+use Domain\Admins\Models\Admin;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

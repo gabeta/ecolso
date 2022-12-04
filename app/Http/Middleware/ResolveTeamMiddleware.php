@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Team;
 use Closure;
+use Domain\Teams\Models\Team;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 

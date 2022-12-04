@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\Models\Landlord\Tenant;
+use Domain\Tenants\Models\Tenant;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\DB;

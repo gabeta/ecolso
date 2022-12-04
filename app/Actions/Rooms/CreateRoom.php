@@ -3,7 +3,7 @@
 namespace App\Actions\Rooms;
 
 use App\Data\RoomFormData;
-use App\Models\Room;
+use Domain\Rooms\Models\Room;
 use Illuminate\Support\Facades\DB;
 
 class CreateRoom

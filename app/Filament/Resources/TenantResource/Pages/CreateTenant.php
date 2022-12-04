@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\TenantResource\Pages;
 
-use App\Actions\Landlord\CreateTenant as LandlordCreateTenant;
-use App\Data\TenantFormData;
-use App\Data\UserFormData;
+
 use App\Filament\Resources\TenantResource;
-use App\Models\Landlord\Tenant;
+use Domain\Tenants\Actions\CreateNewTenantDomain;
+use Domain\Tenants\DataTransferObjects\CreateTenantData;
+use Domain\Users\DataTransferObjects\CreateUserData;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Wizard;
@@ -61,19 +61,19 @@ class CreateTenant extends CreateRecord
 
     protected function handleRecordCreation(array $data): Model
     {
-        $tenantFormData = new TenantFormData([
+        $createTenantData = new CreateTenantData([
             'name' => $data['name'],
             'database' => 'ecolso_'.$data['database'],
             'domain' => $data['domain'].'.'.config('app.domain'),
             'description' => $data['description'] ?? null,
-            'user' => new UserFormData([
+            'user' => new CreateUserData([
                 'name' => $data['user_name'],
                 'email' => $data['email'],
                 'password' => Str::random(8)
             ]),
         ]);
 
-        return app(\App\Actions\Landlord\CreateTenant::class)->handle($tenantFormData);
+        return app(CreateNewTenantDomain::class)->handle($createTenantData);
     }
 
     protected function getCreatedNotificationMessage(): ?string

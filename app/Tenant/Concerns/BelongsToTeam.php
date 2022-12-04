@@ -2,9 +2,9 @@
 
 namespace App\Tenant\Concerns;
 
-use App\Models\Team;
 use App\Tenant\Observers\TeamObserver;
 use App\Tenant\Scopes\TeamScope;
+use Domain\Teams\Models\Team;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait BelongsToTeam

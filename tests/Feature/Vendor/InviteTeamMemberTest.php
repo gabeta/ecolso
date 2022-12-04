@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use Domain\Users\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Jetstream\Features;
 use Laravel\Jetstream\Mail\TeamInvitation;

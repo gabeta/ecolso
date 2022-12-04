@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Landlord\RoomType;
+use Domain\Rooms\Models\RoomType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;

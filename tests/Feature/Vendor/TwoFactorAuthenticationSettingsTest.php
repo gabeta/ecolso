@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use Domain\Users\Models\User;
 use Laravel\Fortify\Features;
 
 test('two factor authentication can be enabled', function () {

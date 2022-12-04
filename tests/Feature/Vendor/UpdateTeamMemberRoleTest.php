@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use Domain\Users\Models\User;
 
 test('team member roles can be updated', function () {
     $this->actingAs($user = User::factory()->withPersonalTeam()->create());

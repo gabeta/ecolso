@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use Domain\Users\Models\User;
 use Laravel\Jetstream\Features;
 
 test('api tokens can be created', function () {

@@ -3,7 +3,7 @@
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SchoolController;
-use App\Models\Landlord\Tenant;
+use Domain\Tenants\Models\Tenant;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Inertia\Inertia;

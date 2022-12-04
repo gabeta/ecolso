@@ -1,8 +1,10 @@
 <?php
 
-use App\Models\Landlord\Tenant;
+use Domain\Tenants\Models\Tenant;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 use Tests\TestCase;
 
 /*
@@ -45,7 +47,12 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function createRequest($method, $uri): Request
 {
-    // ..
+    $symfonyRequest = SymfonyRequest::create(
+        $uri,
+        $method,
+    );
+
+    return Request::createFromBase($symfonyRequest);
 }
