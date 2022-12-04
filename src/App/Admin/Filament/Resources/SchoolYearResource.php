@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace Ecolso\Admin\Filament\Resources;
 
-use App\Filament\Resources\SchoolYearResource\Pages;
-use App\Filament\Resources\SchoolYearResource\RelationManagers;
 use App\Models\Landlord\SchoolYear;
-use App\Rules\DateExist;
+use Ecolso\Admin\Filament\Resources\SchoolYearResource\Pages\CreateSchoolYear;
+use Ecolso\Admin\Filament\Resources\SchoolYearResource\Pages\EditSchoolYear;
+use Ecolso\Admin\Filament\Resources\SchoolYearResource\Pages\ListSchoolYears;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
@@ -70,9 +70,9 @@ class SchoolYearResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSchoolYears::route('/'),
-            'create' => Pages\CreateSchoolYear::route('/create'),
-            'edit' => Pages\EditSchoolYear::route('/{record}/edit'),
+            'index' => ListSchoolYears::route('/'),
+            'create' => CreateSchoolYear::route('/create'),
+            'edit' => EditSchoolYear::route('/{record}/edit'),
         ];
     }
 }

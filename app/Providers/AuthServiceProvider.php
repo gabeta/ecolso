@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Policies\TeamPolicy;
 use Domain\Teams\Models\Team;
+use Domain\Teams\Policies\TeamPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider

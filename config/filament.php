@@ -102,8 +102,8 @@ return [
     */
 
     'pages' => [
-        'namespace' => 'App\\Filament\\Pages',
-        'path' => app_path('Filament/Pages'),
+        'namespace' => 'Ecolso\\Admin\\Filament\\Pages',
+        'path' => src_path('App/Admin/Filament/Pages'),
         'register' => [
             Pages\Dashboard::class,
         ],
@@ -120,8 +120,8 @@ return [
     */
 
     'resources' => [
-        'namespace' => 'App\\Filament\\Resources',
-        'path' => app_path('Filament/Resources'),
+        'namespace' => 'Ecolso\\Admin\\Filament\\Resources',
+        'path' => src_path('App/Admin/Filament/Resources'),
         'register' => [],
     ],
 
@@ -136,8 +136,8 @@ return [
     */
 
     'widgets' => [
-        'namespace' => 'App\\Filament\\Widgets',
-        'path' => app_path('Filament/Widgets'),
+        'namespace' => 'Ecolso\\Admin\\Filament\\Widgets',
+        'path' => src_path('App/Admin/Filament/Widgets'),
         'register' => [
             Widgets\AccountWidget::class,
             Widgets\FilamentInfoWidget::class,
@@ -155,8 +155,8 @@ return [
     */
 
     'livewire' => [
-        'namespace' => 'App\\Filament',
-        'path' => app_path('Filament'),
+        'namespace' => 'Ecolso\\Admin\\Filament',
+        'path' => src_path('App/Admin/Filament'),
     ],
 
     /*

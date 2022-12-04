@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\TenantResource\Pages;
+namespace Ecolso\Admin\Filament\Resources\TenantResource\Pages;
 
 
-use App\Filament\Resources\TenantResource;
 use Domain\Tenants\Actions\CreateNewTenantDomain;
 use Domain\Tenants\DataTransferObjects\CreateTenantData;
 use Domain\Users\DataTransferObjects\CreateUserData;
+use Ecolso\Admin\Filament\Resources\TenantResource;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Wizard;

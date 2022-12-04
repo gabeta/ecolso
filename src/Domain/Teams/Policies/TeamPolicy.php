@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies;
+namespace Domain\Teams\Policies;
 
 use Domain\Teams\Models\Team;
 use Domain\Users\Models\User;

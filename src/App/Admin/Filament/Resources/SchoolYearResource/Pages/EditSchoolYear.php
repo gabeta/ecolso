@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources\SchoolYearResource\Pages;
+namespace Ecolso\Admin\Filament\Resources\SchoolYearResource\Pages;
 
-use App\Filament\Resources\SchoolYearResource;
 use App\Models\Landlord\SchoolYear;
+use Ecolso\Admin\Filament\Resources\SchoolYearResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 

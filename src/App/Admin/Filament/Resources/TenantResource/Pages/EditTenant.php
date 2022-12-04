@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\TenantResource\Pages;
+namespace Ecolso\Admin\Filament\Resources\TenantResource\Pages;
 
-use App\Filament\Resources\TenantResource;
+use Ecolso\Admin\Filament\Resources\TenantResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 

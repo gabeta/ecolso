@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace Ecolso\Admin\Filament\Resources;
 
-use App\Filament\Resources\TenantResource\Pages;
-use App\Filament\Resources\TenantResource\RelationManagers;
 use Domain\Tenants\Models\Tenant;
+use Ecolso\Admin\Filament\Resources\TenantResource\Pages\CreateTenant;
+use Ecolso\Admin\Filament\Resources\TenantResource\Pages\EditTenant;
+use Ecolso\Admin\Filament\Resources\TenantResource\Pages\ListTenants;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -56,9 +57,9 @@ class TenantResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTenants::route('/'),
-            'create' => Pages\CreateTenant::route('/create'),
-            'edit' => Pages\EditTenant::route('/{record}/edit'),
+            'index' => ListTenants::route('/'),
+            'create' => CreateTenant::route('/create'),
+            'edit' => EditTenant::route('/{record}/edit'),
         ];
     }
 }
