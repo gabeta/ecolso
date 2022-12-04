@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\ClassRoomController;
-use App\Http\Controllers\RoomController;
-use App\Http\Controllers\SchoolController;
 use Domain\Tenants\Models\Tenant;
+use Ecolso\Saas\Controllers\ClassRoomController;
+use Ecolso\Saas\Controllers\RoomController;
+use Ecolso\Saas\Controllers\SchoolController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Inertia\Inertia;

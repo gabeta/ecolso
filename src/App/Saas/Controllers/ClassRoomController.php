@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Ecolso\Saas\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\ClassRoom;
 use App\Models\Landlord\ClassRoomType;
-use App\Models\Room;
 use App\Table\InertiaTable;
+use Domain\Rooms\Models\Room;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Spatie\QueryBuilder\QueryBuilder;

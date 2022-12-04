@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\TeamInvitationController;
+use Ecolso\Saas\Controllers\TeamInvitationController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Http\Controllers\CurrentTeamController;
 use Laravel\Jetstream\Http\Controllers\Inertia\ApiTokenController;

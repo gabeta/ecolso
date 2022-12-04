@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Ecolso\Saas\Controllers;
 
-use Domain\Tenants\Models\Tenant;
+use App\Http\Controllers\Controller;
+use Domain\Teams\Models\Team;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 

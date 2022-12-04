@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Ecolso\Saas\Controllers;
 
-use App\Actions\Rooms\CreateRoom;
-use App\Actions\Rooms\UpdateRoom;
 use App\Data\RoomFormData;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RoomFormRequest;
 use App\Models\Landlord\SchoolYear;
 use App\Table\InertiaTable;
+use Domain\Rooms\Actions\CreateRoom;
+use Domain\Rooms\Actions\UpdateRoom;
 use Domain\Rooms\Models\Room;
 use Domain\Rooms\Models\RoomType;
 use Domain\Teams\Models\Team;

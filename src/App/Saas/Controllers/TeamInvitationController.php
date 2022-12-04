@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Ecolso\Saas\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;

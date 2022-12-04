@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\Rooms;
+namespace Domain\Rooms\Actions;
 
 use App\Data\RoomFormData;
 use Domain\Rooms\Models\Room;
