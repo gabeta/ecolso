@@ -63,7 +63,7 @@ class CreateTenant extends CreateRecord
     {
         $createTenantData = new CreateTenantData([
             'name' => $data['name'],
-            'database' => 'ecolso_'.$data['database'],
+            'database' => config('database.tenant_prefix').$data['database'],
             'domain' => $data['domain'].'.'.config('app.domain'),
             'description' => $data['description'] ?? null,
             'user' => new CreateUserData([
@@ -73,7 +73,7 @@ class CreateTenant extends CreateRecord
             ]),
         ]);
 
-        return app(CreateNewTenantDomain::class)->handle($createTenantData);
+        return (app(CreateNewTenantDomain::class))($createTenantData);
     }
 
     protected function getCreatedNotificationMessage(): ?string

@@ -17,6 +17,8 @@ return [
 
     'default' => env('DB_CONNECTION', 'mysql'),
 
+    'tenant_prefix' => env('DB_TENANT_PREFIX', 'ecolso_'),
+
     /*
     |--------------------------------------------------------------------------
     | Database Connections
