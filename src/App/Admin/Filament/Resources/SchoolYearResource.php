@@ -2,7 +2,7 @@
 
 namespace Ecolso\Admin\Filament\Resources;
 
-use App\Models\Landlord\SchoolYear;
+use Domain\SchoolYears\Models\SchoolYear;
 use Ecolso\Admin\Filament\Resources\SchoolYearResource\Pages\CreateSchoolYear;
 use Ecolso\Admin\Filament\Resources\SchoolYearResource\Pages\EditSchoolYear;
 use Ecolso\Admin\Filament\Resources\SchoolYearResource\Pages\ListSchoolYears;

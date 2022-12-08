@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Ecolso\Saas\Middlewares;
 
 use Closure;
 use Domain\Teams\Models\Team;

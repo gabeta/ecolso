@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Ecolso\Saas\Middlewares;
 
-use App\Models\Landlord\SchoolYear;
+use Domain\SchoolYears\Models\SchoolYear;
 use Closure;
+use Domain\SchoolYears\Exceptions\NoSchoolYearsAvailableException;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -22,6 +23,8 @@ class ResolveSchoolYearMiddleware
 
         if (is_null($year)) {
             $year = SchoolYear::where('is_current', 1)->first();
+
+            throw_if(is_null($year), new NoSchoolYearsAvailableException());
 
             return redirect()->route('app.dashboard', ['team' => $request->team, 'year' => $year]);
         }

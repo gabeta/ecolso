@@ -32,7 +32,7 @@ $routing = function() {
 
         Route::resource('schools', SchoolController::class)->except('destroy');
 
-        Route::prefix('/{team}/year/{year?}')
+        Route::prefix('teams/{team}/year/{year?}')
             ->middleware('saas')
             ->name('app.')
             ->group(function () {
@@ -51,11 +51,14 @@ $routing = function() {
     });
 };
 
+/*
 if (Schema::connection('landlord')->hasTable('tenants')) {
-    Tenant::pluck('domain')
-        ->each(function($domain) use ($routing) {
-            Route::domain($domain)
-                ->middleware('tenant')
-                ->group($routing);
-        });
 }
+*/
+
+Tenant::pluck('domain')
+    ->each(function($domain) use ($routing) {
+        Route::domain($domain)
+            ->middleware('tenant')
+            ->group($routing);
+    });

@@ -5,7 +5,7 @@ namespace Ecolso\Saas\Controllers;
 use App\Data\RoomFormData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoomFormRequest;
-use App\Models\Landlord\SchoolYear;
+use Domain\SchoolYears\Models\SchoolYear;
 use App\Table\InertiaTable;
 use Domain\Rooms\Actions\CreateRoom;
 use Domain\Rooms\Actions\UpdateRoom;

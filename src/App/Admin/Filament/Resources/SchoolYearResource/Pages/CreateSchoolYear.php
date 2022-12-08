@@ -2,7 +2,7 @@
 
 namespace Ecolso\Admin\Filament\Resources\SchoolYearResource\Pages;
 
-use App\Models\Landlord\SchoolYear;
+use Domain\SchoolYears\Models\SchoolYear;
 use Ecolso\Admin\Filament\Resources\SchoolYearResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord;

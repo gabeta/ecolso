@@ -47,11 +47,12 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function createRequest($method, $uri): Request
+function createRequest($method, $uri, $parameters = []): Request
 {
     $symfonyRequest = SymfonyRequest::create(
         $uri,
         $method,
+        $parameters
     );
 
     return Request::createFromBase($symfonyRequest);
