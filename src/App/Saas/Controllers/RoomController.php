@@ -55,17 +55,6 @@ class RoomController extends Controller
         return redirect()->appRoute('rooms.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Room $room)
-    {
-        //
-    }
-
     public function update(RoomFormRequest $request, Team $team, SchoolYear $year, Room $room)
     {
         app(UpdateRoom::class)->handle(

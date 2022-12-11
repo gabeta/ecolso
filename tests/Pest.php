@@ -57,3 +57,7 @@ function createRequest($method, $uri, $parameters = []): Request
 
     return Request::createFromBase($symfonyRequest);
 }
+
+function testAppRoute($name, $parameters = []) {
+    return route($name, $parameters);
+}

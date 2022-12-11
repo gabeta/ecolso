@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'landlord'),
 
     'tenant_prefix' => env('DB_TENANT_PREFIX', 'ecolso_'),
 
