@@ -3,7 +3,6 @@
 use Domain\SchoolYears\Exceptions\NoSchoolYearsAvailableException;
 use Domain\SchoolYears\Models\SchoolYear;
 use Domain\Teams\Models\Team;
-use Domain\Tenants\Models\Tenant;
 use Domain\Users\Models\User;
 use Ecolso\Saas\Middlewares\ResolveSchoolYearMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -40,21 +39,41 @@ it("redirect to current school year when year is not defined on route", function
     expect($response->isRedirect(route('app.dashboard', ['team' => $this->team, 'year' => $year])))->toBeTrue();
 });
 
-it('will perform the right redirect when saas middlewre is apply', function() {
-    Route::get('fake-route/{team}/year/{year?}', fn() => 'work fine')->middleware('saas');
+it("redirect to school year", function () {
+    $schools = SchoolYear::factory(3)->create([
+        'is_current' => false
+    ]);
 
-    $route =  'fake-route/'.$this->team->id.'/year';
-    $year = SchoolYear::factory()->create([
+    $year = $schools->first();
+
+    SchoolYear::factory()->create([
         'is_current' => true
     ]);
 
-    get($route)->assertStatus(302)->assertRedirect(route('app.dashboard', ['team' => $this->team, 'year' => $year]));
+    $response = (new ResolveSchoolYearMiddleware())->handle(
+        createRequest('get', 'teams/'.$this->team->id.'/year/'.$year->slug, ['team' => $this->team, 'year' => $year->slug]),
+        fn() => new Response()
+    );
+
+    expect($response->isRedirect())->toBeFalse();
+});
+
+it('will perform the right redirect when saas middlewre is apply', function() {
+    Route::get('fake-route/{team}/year/{year?}', fn() => 'work fine')->middleware('saas');
+
+    $year = SchoolYear::factory()->create([
+        'is_current' => true
+    ]);
+    actingAs($user = User::factory()->withPersonalTeam()->create());
+    $team = $user->ownedTeams()->first();
+    $route =  'fake-route/'.$team->id.'/year';
+
+    get($route)->assertStatus(302)->assertRedirect(route('app.dashboard', ['team' => $team, 'year' => $year]));
 
     $lastYear = SchoolYear::factory()->create([
         'is_current' => false
     ]);
 
-    actingAs(User::factory()->create());
-
     get($route.'/'.$lastYear->slug)->assertStatus(200);
+    expect($lastYear->id)->toBe((app('currentYear')->get())->id);
 });

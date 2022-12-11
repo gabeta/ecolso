@@ -22,7 +22,7 @@ class ResolveTeamMiddleware
 
         $team = Team::where('id', $request->team)->firstOrFail();
 
-        abort_unless($user->belongsTo($team), 404);
+        abort_unless($user->belongsToTeam($team), 404);
 
         app('currentTeam')->put($team);
 

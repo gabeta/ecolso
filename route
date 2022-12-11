@@ -1,0 +1,4 @@
+
+   Pest\Exceptions\TestAlreadyExist 
+
+  A test with the description `it user can't access to which does not belong to him` already exist in the filename `/var/www/ecolso/tests/Feature/App/Saas/Middlewares/ResolveTeamMiddlewareTest.php`.
