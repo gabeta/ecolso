@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use Domain\Rooms\Models\Room;
+use Domain\Teams\Models\Team;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -10,6 +12,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class RoomFactory extends Factory
 {
     /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Room::class;
+
+    /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
@@ -17,7 +26,9 @@ class RoomFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'uuid' => $this->faker->uuid(),
+            'name' => $this->faker->name(),
+            'team_id' => Team::factory(),
         ];
     }
 }

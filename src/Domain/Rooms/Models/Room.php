@@ -3,6 +3,7 @@
 namespace Domain\Rooms\Models;
 
 use App\Tenant\Concerns\BelongsToTeam;
+use Database\Factories\RoomFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,6 +21,16 @@ class Room extends Model
     use SoftDeletes;
 
     protected $guarded = [];
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return RoomFactory::new();
+    }
 
     public function types(): BelongsToMany
     {

@@ -27,7 +27,6 @@ class SchoolYear extends Model
         return SchoolYearFactory::new();
     }
 
-
     /**
     * Get the options for generating the slug.
     */
