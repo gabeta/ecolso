@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Domain\Rooms\Models\RoomType;
+use Domain\Tenants\Models\Tenant;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RoomFormRequest extends FormRequest
 {
@@ -25,7 +28,12 @@ class RoomFormRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string:255'],
-            'types' => ['required', 'array']
+            'types' => ['required', 'array'],
+            'types.*' => Rule::forEach(function ($value, $attribute) {
+                return [
+                    Rule::exists(RoomType::class, 'id'),
+                ];
+            })
         ];
     }
 }

@@ -19,7 +19,11 @@ class ResolveSchoolYearMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $year = SchoolYear::where('slug', $request->year)->first();
+        if ($request->year instanceof SchoolYear) {
+            $year = $request->year;
+        } else {
+            $year = SchoolYear::where('slug', $request->year)->first();
+        }
 
         if (is_null($year)) {
             $year = SchoolYear::where('is_current', 1)->first();

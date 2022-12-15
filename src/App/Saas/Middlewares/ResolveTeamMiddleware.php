@@ -20,7 +20,11 @@ class ResolveTeamMiddleware
     {
         $user = $request->user();
 
-        $team = Team::where('id', $request->team)->firstOrFail();
+        if ($request->team instanceof Team) {
+            $team = $request->team;
+        } else {
+            $team = Team::where('id', $request->team)->firstOrFail();
+        }
 
         abort_unless($user->belongsToTeam($team), 404);
 
