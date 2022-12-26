@@ -42,7 +42,7 @@ $routing = function() {
 
                 Route::resource('classrooms', ClassRoomController::class);
 
-                Route::resource('rooms', RoomController::class);//->except(['create', 'update', 'show']);
+                Route::resource('rooms', RoomController::class)->except(['destroy', 'create', 'edit']);
 
                 Route::resource('students', TeamController::class);
 

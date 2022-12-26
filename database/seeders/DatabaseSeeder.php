@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RoomTypeSeeder::class);
         $this->call(WeekDayTableSeeder::class);
         $this->call(StudentClassTypeSeeder::class);
+        $this->call(LandlordRolesAndPermissionsTablesSeeder::class);
     }
 }
