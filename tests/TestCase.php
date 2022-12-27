@@ -23,7 +23,6 @@ abstract class TestCase extends BaseTestCase
         ];
     }
 
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -50,14 +49,16 @@ abstract class TestCase extends BaseTestCase
     public function makeMigration(): void
     {
         if (! Schema::connection('landlord_testing')->hasTable('tenants')) {
-            $this->artisan('migrate:fresh --database=landlord_testing --path=database/migrations/landlord');
+            $this->artisan('migrate --database=landlord_testing --path=database/migrations/landlord --seed');
+        /*}
 
+        if (! Schema::connection('tenant_testing')->hasTable('users')) {*/
             $tenant = Tenant::factory()->create([
-                'database' => 'ecolso_tenant_testing',
+                'database' => 'ecolso_testing_tenant',
                 'domain' => 'localhost'
             ]);
 
-            $this->artisan("tenants:artisan 'migrate:fresh --path=database/migrations --database=tenant_testing' --tenant={$tenant->id}");
+            $this->artisan("tenants:artisan 'migrate --path=database/migrations --database=tenant_testing' --tenant={$tenant->id}");
         }
     }
 }

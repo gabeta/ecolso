@@ -68,6 +68,14 @@
                                 <i class="fas fa-tasks fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Écoles</span>
                             </Link>
                         </li>
+                        <li class="mr-6 my-2 md:my-0">
+                            <Link :href="route('users.index')"
+                                class="block text-gray-200 hover:text-white py-1 md:py-3 pl-1 truncate transition duration-150"
+                                :class="route().current('users.index') && 'hover:text-gray-200 border-b-2 border-gray-200'"
+                            >
+                                <i class="fas fa-tasks fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Utilisateurs</span>
+                            </Link>
+                        </li>
                         <!--li class="mr-6 my-2 md:my-0">
                             <Link href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-900 border-b-2 border-white hover:border-pink-500">
                                 <i class="fas fa-tasks fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Utilisateurs</span>

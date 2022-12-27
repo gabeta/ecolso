@@ -4,6 +4,7 @@ use Domain\Tenants\Models\Tenant;
 use Ecolso\Saas\Controllers\ClassRoomController;
 use Ecolso\Saas\Controllers\RoomController;
 use Ecolso\Saas\Controllers\SchoolController;
+use Ecolso\Saas\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Inertia\Inertia;
@@ -32,6 +33,8 @@ $routing = function() {
 
         Route::resource('schools', SchoolController::class)->except('destroy');
 
+        Route::resource('users', UserController::class);
+
         Route::prefix('teams/{team}/year/{year?}')
             ->middleware('saas')
             ->name('app.')
@@ -51,14 +54,12 @@ $routing = function() {
     });
 };
 
-/*
-if (Schema::connection('landlord')->hasTable('tenants')) {
-}
-*/
 
-Tenant::pluck('domain')
-    ->each(function($domain) use ($routing) {
-        Route::domain($domain)
-            ->middleware('tenant')
-            ->group($routing);
-    });
+if (Schema::connection('landlord')->hasTable('tenants')) {
+    Tenant::pluck('domain')
+        ->each(function($domain) use ($routing) {
+            Route::domain($domain)
+                ->middleware('tenant')
+                ->group($routing);
+        });
+}
