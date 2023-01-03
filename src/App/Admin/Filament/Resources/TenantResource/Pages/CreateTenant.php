@@ -2,7 +2,7 @@
 
 namespace Ecolso\Admin\Filament\Resources\TenantResource\Pages;
 
-
+use Domain\Permissions\Enums\RoleEnum;
 use Domain\Tenants\Actions\CreateNewTenantDomain;
 use Domain\Tenants\DataTransferObjects\CreateTenantData;
 use Domain\Users\DataTransferObjects\CreateUserData;
@@ -69,7 +69,9 @@ class CreateTenant extends CreateRecord
             'user' => new CreateUserData([
                 'name' => $data['user_name'],
                 'email' => $data['email'],
-                'password' => Str::random(8)
+                'password' => Str::random(8),
+                'roles' => collect([RoleEnum::ADMIN]),
+                'is_super_admin' => true
             ]),
         ]);
 

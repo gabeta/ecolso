@@ -3,9 +3,12 @@
 namespace Ecolso\Saas\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Table\InertiaTable;
+use Domain\Teams\Models\Team;
 use Domain\Users\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends Controller
 {
@@ -14,13 +17,25 @@ class UserController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-   public function index()
-   {
-       $users = User::query()->with(['roles'])->get();
+    public function index()
+    {
+        $users = QueryBuilder::for(User::class)
+            ->with(['roles'])
+            ->paginate();
 
-       return Inertia::render('Users/Index', [
-           'users' => $users
-       ]);
-   }
+        $teams = Team::all();
 
+        return Inertia::render('Users/Index', [
+            'users' => $users,
+            'teams' => $teams
+        ])->table(function (InertiaTable $table) {
+        $table->disableGlobalSearch()
+                ->addSearch('name', 'Libéllé', ['position' => 2, 'type' => 'text', 'placeholder' => 'Rechercher par le libéllé']);
+        });
+    }
+
+    public function store()
+    {
+
+    }
 }

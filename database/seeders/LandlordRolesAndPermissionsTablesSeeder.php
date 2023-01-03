@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Domain\Permissions\Enums\RoleEnum;
 use Domain\Permissions\Models\Permission;
 use Domain\Permissions\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -19,23 +20,30 @@ class LandlordRolesAndPermissionsTablesSeeder extends Seeder
     {
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
+        $admin = RoleEnum::ADMIN->value;
+        $inspector = RoleEnum::INSPECTOR->value;
+        $support = RoleEnum::SUPPORT->value;
+        $secretary = RoleEnum::SECRETARY->value;
+        $director = RoleEnum::DIRECTOR->value;
+        $teacher = RoleEnum::TEACHER->value;
+
         $permissionsByRole = [
-            'admin' => ['*'], // IEP
-            'inspector' => [
+            $admin => ['*'],
+            $inspector => [
                 'teams.index', 'teams.show', 'rooms.index', 'rooms.show',
                 'users.index', 'users.show', 'classrooms.show'
-            ], // IEP
-            'support' => ['teams.*', 'users.*', 'classrooms.*'], // IEP
-            'secretary' => [
+            ],
+            $support => ['teams.*', 'users.*', 'classrooms.*'],
+            $secretary => [
                 'teams.show', 'users.show', 'rooms.*', 'classrooms.index',
                 'classrooms.show', 'classrooms.create', 'classrooms.update'
-            ], // school
-            'director' => [
+            ],
+            $director => [
                 'teams.show', 'users.index', 'users.show', 'rooms.*', 'classrooms.*'
-            ], // school
-            'teacher' => [
+            ],
+            $teacher => [
                 'teams.show', 'users.show', 'classrooms.show'
-            ], // school
+            ],
         ];
 
 
@@ -44,12 +52,12 @@ class LandlordRolesAndPermissionsTablesSeeder extends Seeder
             ->toArray();
 
         $permissionIdsByRole = [
-            'admin' => $insertPermissions('admin'),
-            'inspector' => $insertPermissions('inspector'),
-            'support' => $insertPermissions('support'),
-            'secretary' => $insertPermissions('secretary'),
-            'director' => $insertPermissions('director'),
-            'teacher' => $insertPermissions('teacher'),
+            $admin => $insertPermissions($admin),
+            $inspector => $insertPermissions($inspector),
+            $support => $insertPermissions($support),
+            $secretary => $insertPermissions($secretary),
+            $director => $insertPermissions($director),
+            $teacher => $insertPermissions($teacher),
         ];
 
         foreach ($permissionIdsByRole as $role => $permissionIds) {

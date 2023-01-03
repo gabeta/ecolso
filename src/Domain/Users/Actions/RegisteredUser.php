@@ -13,8 +13,11 @@ class RegisteredUser
         event(new Registered($user = User::create([
             'name' => $data->name,
             'email' => $data->email,
-            'password' => bcrypt($data->password)
+            'password' => bcrypt($data->password),
+            'is_super_admin' => $data->is_super_admin
         ])));
+
+        $user->assignRole($data->roles->map(fn($role) => $role->value));
 
         return $user;
     }
